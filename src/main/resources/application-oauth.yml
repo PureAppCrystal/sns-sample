@@ -1,0 +1,20 @@
+spring:
+  security:
+    oauth2:
+      client:
+        # 내가 이 인증하기 위한 방식들, key-secret값 무슨 정보를 받을 것인지
+        registration:
+          kakao:
+            client-id: 7f195a0dbcf6fbebab277c68c6909907
+            redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}" # http://localhost:8080/login/oauth2/code/kakao
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope: profile_nickname, profile_image, account_email
+            client-name: Kakao
+        # oauth인증을 받기위한 주소들
+        provider:
+          kakao:
+            authorization_uri: https://kauth.kakao.com/oauth/authorize
+            token_uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user_name_attribute: id
